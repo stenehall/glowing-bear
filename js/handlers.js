@@ -14,6 +14,7 @@ weechat.factory('handlers', ['$rootScope', '$log', 'models', 'plugins', 'notific
     var handleLine = function(line, manually) {
         var message = new models.BufferLine(line);
         var buffer = models.getBuffer(message.buffer);
+        var deltaLastSeen = 0;
         buffer.requestedLines++;
         // Only react to line if its displayed
         if (message.displayed) {
@@ -22,6 +23,7 @@ weechat.factory('handlers', ['$rootScope', '$log', 'models', 'plugins', 'notific
 
             if (manually) {
                 buffer.lastSeen++;
+                deltaLastSeen++;
             }
 
             if (buffer.active && !manually) {
@@ -41,6 +43,7 @@ weechat.factory('handlers', ['$rootScope', '$log', 'models', 'plugins', 'notific
                 }
             }
         }
+        return deltaLastSeen;
     };
 
     var handleBufferLineAdded = function(message) {
@@ -109,9 +112,11 @@ weechat.factory('handlers', ['$rootScope', '$log', 'models', 'plugins', 'notific
         if (manually === undefined) {
             manually = true;
         }
+        var deltaLastSeen = 0;
         lines.forEach(function(l) {
-            handleLine(l, manually);
+            deltaLastSeen += handleLine(l, manually);
         });
+        $log.debug('handleLineInfo: ', models.getBuffer(lines[0].buffer).shortName, 'lastSeen increased by', deltaLastSeen);
     };
 
     /*
@@ -134,6 +139,7 @@ weechat.factory('handlers', ['$rootScope', '$log', 'models', 'plugins', 'notific
             * what the last read line is and update it accordingly
             */
             var unreadSum = _.reduce(l.count, function(memo, num) { return memo + num; }, 0);
+            console.log('handleHotlistInfo:', buffer.shortName, 'lastSeen was', buffer.lastSeen, 'is now', buffer.lines.length - 1 - unreadSum);
             buffer.lastSeen = buffer.lines.length - 1 - unreadSum;
         });
     };
