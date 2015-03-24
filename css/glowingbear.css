@@ -270,16 +270,20 @@ input[type=text], input[type=password], #sendMessage {
     overflow: hidden;
 }
 
-.nav-pills li {
-    min-height: 20px;
+.nav-pills {
+    font-size: 14px;
 }
+
 .nav-pills li+li {
     margin-top: 0;
 }
+.nav-pills li:nth-child(2n) {
+    background: #232323;
+}
+
 .nav-pills > li > a {
     border-radius: 0;
     color: #ddd;
-    padding: 5px 10px;
 }
 .nav-pills > li > a:hover, .nav-pills > li > a:hover span {
     color: #222;
@@ -787,14 +791,6 @@ img.emojione {
 
     .navbar {
         min-height: 0%;
-    }
-
-    .nav-pills {
-        font-size: 14px;
-    }
-
-    .nav-pills li a {
-        padding: 10px 15px;
     }
 
     #bufferlines {
