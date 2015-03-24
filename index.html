@@ -248,14 +248,11 @@ npm run build-electron-{windows, darwin, linux}</pre>
         </div>
 
         <div class="title" title="{{activeBuffer().rtitle}}">
-<<<<<<< 862ad64254687ffa6de24ebc0bccb2f84a8fe514
           <span class="desktop" ng-repeat="part in activeBuffer().title" ng-class="::part.classes" ng-bind-html="::(part.text | linky:'_blank':{rel:'noopener noreferrer'} | DOMfilter:'irclinky')"></span>
           <span class="mobile" ng-click="showModal('topicModal')" ng-class="{'active': activeBuffer().active, 'channel': activeBuffer().type === 'channel', 'channel_hash': activeBuffer().prefix === '#', 'channel_plus': activeBuffer().prefix === '+', 'channel_ampersand': activeBuffer().prefix === '&'}">{{ activeBuffer().trimmedName || activeBuffer().fullName }}</span>
-=======
-          <span class="visible-lg" ng-repeat="part in activeBuffer().title" ng-class="::part.classes" ng-bind-html="::(part.text | linky:'_blank' | DOMfilter:'irclinky')"></span>
-          <span class="hidden-lg">{{ activeBuffer().trimmedName || activeBuffer().fullName }}</span>
 
->>>>>>> Remove topic and add channel name for mobile
+          <span class="hidden-lg">{{ activeBuffer().trimmedName || activeBuffer().fullName }}</span>
+          <span class="hidden-lg" ng-click="showModal('topicModal')">{{ activeBuffer().trimmedName || activeBuffer().fullName }}</span>
         </div>
 
         <div class="actions pull-right vertical-line-left">
