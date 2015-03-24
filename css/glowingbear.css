@@ -763,10 +763,13 @@ img.emojione {
         height: 28px;
     }
 
-    #topbar .badge {
+    #topbar .brand .badge {
         display: none;
     }
 
+    #topbar .actions {
+        font-size: 16px;
+    }
 
     #bufferlines, #nicklist {
         position: relative;
