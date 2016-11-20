@@ -407,10 +407,6 @@ td.time {
 [x-ng-click] {
     cursor: pointer;
 }
-::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-}
 
 ::-webkit-scrollbar-thumb:vertical {
     height: 15px;
