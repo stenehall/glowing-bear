@@ -15,7 +15,7 @@ li.bufferfilter {
 /* Clean up topbar */
 #topbar {
   background: #455164;
-  width: inherit;
+  width: 210px;
 }
 
 #topbar .actions {
