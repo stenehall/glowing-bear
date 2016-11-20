@@ -1,405 +1,400 @@
 <!DOCTYPE html>
 <html ng-app="weechat" ng-cloak>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Glowing Bear">
-    <meta name="theme-color" content="#181818">
-    <meta http-equiv="x-dns-prefetch-control" content="off">
-    <!-- https://w3c.github.io/manifest/ && https://developer.mozilla.org/en-US/docs/Web/Manifest -->
-    <link rel="manifest" href="webapp.manifest.json">
-    <title ng-bind-template="{{ notificationStatus }}Glowing Bear {{ pageTitle}}"></title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" media="screen" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <link rel="shortcut icon" sizes="128x128" href="assets/img/glowing_bear_128x128.png">
-    <link rel="apple-touch-icon" sizes="128x128" href="assets/img/glowing_bear_128x128.png">
-    <link rel="shortcut icon" type="image/png" href="assets/img/favicon.png" >
-    <link href="css/glowingbear.css" rel="stylesheet" media="screen">
-    <link href="css/themes/dark.css" rel="stylesheet" media="screen" id="themeCSS" />
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js" integrity="sha256-6Sr0HqNgUf/p88g6vsl87CrAnNqiOWhjlY6LS8jeWHA=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-route.min.js" integrity="sha256-cSGSOcFF66XhVJmkBJLDSHDSYEd32PmWU4Wpc+0oRXk=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-sanitize.min.js" integrity="sha256-ofQzChnxWn2oMUL1tJeGxH4WabrFcHbgIecUgUpTI48=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-touch.min.js" integrity="sha256-8PhLTPxH6rn7uJ36c6Oe0Io10mU70IJRvP+zq/sxSg8=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.6/lib/js/emojione.min.js" integrity="sha256-r1QTE6OqyCP/xqQCml3O8jLnSm0/6DoIM473m+VnLPM=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="3rdparty/inflate.min.js"></script>
-    <script type="text/javascript" src="js/localstorage.js"></script>
-    <script type="text/javascript" src="js/weechat.js"></script>
-    <script type="text/javascript" src="js/irc-utils.js"></script>
-    <script type="text/javascript" src="js/glowingbear.js"></script>
-    <script type="text/javascript" src="js/settings.js"></script>
-    <script type="text/javascript" src="js/utils.js"></script>
-    <script type="text/javascript" src="js/notifications.js"></script>
-    <script type="text/javascript" src="js/filters.js"></script>
-    <script type="text/javascript" src="js/handlers.js"></script>
-    <script type="text/javascript" src="js/connection.js"></script>
-    <script type="text/javascript" src="js/file-change.js"></script>
-    <script type="text/javascript" src="js/imgur-drop-directive.js"></script>
-    <script type="text/javascript" src="js/whenscrolled-directive.js"></script>
-    <script type="text/javascript" src="js/inputbar.js"></script>
-    <script type="text/javascript" src="js/plugin-directive.js"></script>
-    <script type="text/javascript" src="js/websockets.js"></script>
-    <script type="text/javascript" src="js/bufferResume.js"></script>
-    <script type="text/javascript" src="js/models.js"></script>
-    <script type="text/javascript" src="js/plugins.js"></script>
-    <script type="text/javascript" src="js/imgur.js"></script>
-    <script type="text/javascript" src="3rdparty/favico-0.3.10.min.js"></script>
-  </head>
-  <body ng-controller="WeechatCtrl" ng-keydown="handleKeyPress($event)" ng-keyup="handleKeyRelease($event)"  ng-keypress="handleKeyPress($event)" ng-class="{'no-overflow': connected}" ng-init="init()" lang="en-US">
-    <div class="alert alert-danger upload-error" ng-show="uploadError">
-      <p><strong>Upload error:</strong> Image upload failed.</p>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Glowing Bear">
+  <meta name="theme-color" content="#181818">
+  <meta http-equiv="x-dns-prefetch-control" content="off">
+  <!-- https://w3c.github.io/manifest/ && https://developer.mozilla.org/en-US/docs/Web/Manifest -->
+  <link rel="manifest" href="webapp.manifest.json">
+  <title ng-bind-template="{{ notificationStatus }}Glowing Bear {{ pageTitle}}"></title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" media="screen" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="shortcut icon" sizes="128x128" href="assets/img/glowing_bear_128x128.png">
+  <link rel="apple-touch-icon" sizes="128x128" href="assets/img/glowing_bear_128x128.png">
+  <link rel="shortcut icon" type="image/png" href="assets/img/favicon.png" >
+  <link href="css/glowingbear.css" rel="stylesheet" media="screen">
+  <link href="css/themes/dark.css" rel="stylesheet" media="screen" id="themeCSS" />
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js" integrity="sha256-6Sr0HqNgUf/p88g6vsl87CrAnNqiOWhjlY6LS8jeWHA=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-route.min.js" integrity="sha256-cSGSOcFF66XhVJmkBJLDSHDSYEd32PmWU4Wpc+0oRXk=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-sanitize.min.js" integrity="sha256-ofQzChnxWn2oMUL1tJeGxH4WabrFcHbgIecUgUpTI48=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-touch.min.js" integrity="sha256-8PhLTPxH6rn7uJ36c6Oe0Io10mU70IJRvP+zq/sxSg8=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.6/lib/js/emojione.min.js" integrity="sha256-r1QTE6OqyCP/xqQCml3O8jLnSm0/6DoIM473m+VnLPM=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="3rdparty/inflate.min.js"></script>
+  <script type="text/javascript" src="js/localstorage.js"></script>
+  <script type="text/javascript" src="js/weechat.js"></script>
+  <script type="text/javascript" src="js/irc-utils.js"></script>
+  <script type="text/javascript" src="js/glowingbear.js"></script>
+  <script type="text/javascript" src="js/settings.js"></script>
+  <script type="text/javascript" src="js/utils.js"></script>
+  <script type="text/javascript" src="js/notifications.js"></script>
+  <script type="text/javascript" src="js/filters.js"></script>
+  <script type="text/javascript" src="js/handlers.js"></script>
+  <script type="text/javascript" src="js/connection.js"></script>
+  <script type="text/javascript" src="js/file-change.js"></script>
+  <script type="text/javascript" src="js/imgur-drop-directive.js"></script>
+  <script type="text/javascript" src="js/whenscrolled-directive.js"></script>
+  <script type="text/javascript" src="js/inputbar.js"></script>
+  <script type="text/javascript" src="js/plugin-directive.js"></script>
+  <script type="text/javascript" src="js/websockets.js"></script>
+  <script type="text/javascript" src="js/bufferResume.js"></script>
+  <script type="text/javascript" src="js/models.js"></script>
+  <script type="text/javascript" src="js/plugins.js"></script>
+  <script type="text/javascript" src="js/imgur.js"></script>
+  <script type="text/javascript" src="3rdparty/favico-0.3.10.min.js"></script>
+</head>
+<body ng-controller="WeechatCtrl" ng-keydown="handleKeyPress($event)" ng-keyup="handleKeyRelease($event)"  ng-keypress="handleKeyPress($event)" ng-class="{'no-overflow': connected}" ng-init="init()" lang="en-US">
+  <div class="alert alert-danger upload-error" ng-show="uploadError">
+    <p><strong>Upload error:</strong> Image upload failed.</p>
+  </div>
+  <div ng-hide="connected" class="container">
+    <h2>
+      <img alt="logo" src="assets/img/glowing-bear.svg">
+      <span>Glowing&nbsp;Bear</span>
+      <small>WeeChat web frontend</small>
+    </h2>
+    <div class="alert alert-warning" ng-show="show_tls_warning"><strong>You're not using SSL!</strong> <a href="https://www.glowing-bear.org/">Go to encrypted version</a></div>
+    <div class="alert alert-danger" ng-show="errorMessage">
+      <strong>Connection error</strong> The client was unable to connect to the WeeChat relay
     </div>
-    <div ng-hide="connected" class="container">
-      <h2>
-        <img alt="logo" src="assets/img/glowing-bear.svg">
-        <span>Glowing&nbsp;Bear</span>
-        <small>WeeChat web frontend</small>
-      </h2>
-      <div class="alert alert-warning" ng-show="show_tls_warning"><strong>You're not using SSL!</strong> <a href="https://www.glowing-bear.org/">Go to encrypted version</a></div>
-      <div class="alert alert-danger" ng-show="errorMessage">
-        <strong>Connection error</strong> The client was unable to connect to the WeeChat relay
-      </div>
-      <div class="alert alert-danger" ng-show="sslError">
-        <strong>Secure connection error</strong> A secure connection with the WeeChat relay could not be initiated. This is most likely because your browser does not trust your relay's certificate. Please read the encryption instructions below!
-      </div>
-      <div class="alert alert-danger" ng-show="securityError">
-        <strong>Secure connection error</strong> Unable to connect to unencrypted relay when you are connecting to Glowing Bear over HTTPS. Please use an encrypted relay or load the page without using HTTPS.
-      </div>
-      <div class="panel-group accordion">
-        <div class="panel" data-state="active">
-          <div id="collapseOne" class="panel-collapse collapse">
-            <div class="panel-body">
-               <form class="form-signin" role="form">
-                <div class="form-group">
+    <div class="alert alert-danger" ng-show="sslError">
+      <strong>Secure connection error</strong> A secure connection with the WeeChat relay could not be initiated. This is most likely because your browser does not trust your relay's certificate. Please read the encryption instructions below!
+    </div>
+    <div class="alert alert-danger" ng-show="securityError">
+      <strong>Secure connection error</strong> Unable to connect to unencrypted relay when you are connecting to Glowing Bear over HTTPS. Please use an encrypted relay or load the page without using HTTPS.
+    </div>
 
-                  <div class="input-group">
-                    <div class="row no-gutter">
-                      <div class="col-sm-9">
-                        <label class="control-label" for="host">WeeChat relay</label>
-                        <input type="text" class="form-control favorite-font" id="host" ng-model="settings.host" placeholder="Address" autocapitalize="off">
-                      </div>
-                      <div class="col-sm-3">
-                        <label class="control-label" for="port">Port</label>
-                        <input type="text" class="form-control favorite-font" id="port" ng-model="settings.port" placeholder="Port">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="input-group">
-                    <label class="control-label" for="password">WeeChat relay password</label>
-                    <input type="password" class="form-control favorite-font" id="password" ng-model="password" placeholder="Password">
-                    <div class="alert alert-danger" ng-show="passwordError">
-                      Error: wrong password
-                    </div>
-                  </div>
-
-                  <div class="checkbox">
-                    <label class="fancy-checkbox" for="savepassword">
-                      <input type="checkbox" id="savepassword" ng-model="settings.savepassword">
-                      <span></span>
-                      Save password in your browser
-                    </label>
-                  </div>
-                  <div class="checkbox">
-                    <label class="fancy-checkbox" ng-class="{disabled: !settings.savepassword}" for="autoconnect">
-                      <input type="checkbox" id="autoconnect" ng-model="settings.autoconnect" ng-disabled="!settings.savepassword">
-                      <span></span>
-                      Automatically connect
-                    </label>
-                  </div>
-                  <div class="checkbox">
-                    <label class="fancy-checkbox" for="ssl">
-                      <input type="checkbox" id="ssl" ng-model="settings.ssl">
-                      <span></span>
-                      Encryption.&nbsp;<strong>Strongly recommended!</strong>
-                    </label>
-                  </div>
-                </div>
-                <button class="btn btn-lg btn-primary" ng-click="connect()">{{ connectbutton }}  <i ng-class="connectbuttonicon" class="glyphicon"></i></button>
-              </form>
+    <form class="form-signin" role="form">
+      <div class="form-group">
+        <div class="input-group">
+          <div class="row no-gutter">
+            <div class="col-sm-9">
+              <label class="control-label" for="host">WeeChat relay</label>
+              <input type="text" class="form-control favorite-font" id="host" ng-model="settings.host" placeholder="Address" autocapitalize="off">
+            </div>
+            <div class="col-sm-3">
+              <label class="control-label" for="port">Port</label>
+              <input type="text" class="form-control favorite-font" id="port" ng-model="settings.port" placeholder="Port">
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="content" id="content" sidebar-state="visible" ng-show="connected">
-      <div id="topbar">
-        <div class="brand">
-          <a href="#" ng-click="toggleSidebar()">
-            <img alt="brand" src="assets/img/favicon.png" title="Connected to {{ settings.host }}:{{ settings.port}}">
-          </a>
-          <span class="badge" ng-show="unread > 0">{{unread}}</span>
-          <span class="badge danger" ng-show="notifications > 0">{{notifications}}</span>
-
-          <button ng-if="debugMode" ng-click="countWatchers()">Count<br />Watchers</button>
-        </div>
-
-        <div class="title" title="{{activeBuffer().rtitle}}">
-          <div>
-            <span class="desktop" ng-repeat="part in activeBuffer().title" ng-class="::part.classes" ng-bind-html="::(part.text | linky:'_blank':{rel:'noopener noreferrer'} | DOMfilter:'irclinky')"></span>
-            <span class="mobile" ng-click="showModal('topicModal')" ng-class="{'active': activeBuffer().active, 'channel': activeBuffer().type === 'channel', 'channel_hash': activeBuffer().prefix === '#', 'channel_plus': activeBuffer().prefix === '+', 'channel_ampersand': activeBuffer().prefix === '&'}">{{ activeBuffer().trimmedName || activeBuffer().fullName }}</span>
-
-            <span class="hidden-lg">{{ activeBuffer().trimmedName || activeBuffer().fullName }}</span>
-            <span class="hidden-lg" ng-click="showModal('topicModal')">{{ activeBuffer().trimmedName || activeBuffer().fullName }}</span>
+        <div class="input-group">
+          <label class="control-label" for="password">WeeChat relay password</label>
+          <input type="password" class="form-control favorite-font" id="password" ng-model="password" placeholder="Password">
+          <div class="alert alert-danger" ng-show="passwordError">
+            Error: wrong password
           </div>
         </div>
 
-        <div class="actions pull-right vertical-line-left">
-          <a class="settings-toggle" ng-click="showModal('settingsModal')" title="Options menu" href="#">
-            <i class="glyphicon glyphicon-cog"></i>
-          </a>
-          <a ng-click="disconnect()" title="Disconnect from WeeChat" href="#">
-            <i class="glyphicon glyphicon-off"></i>
-          </a>
+        <div class="checkbox">
+          <label class="fancy-checkbox" for="savepassword">
+            <input type="checkbox" id="savepassword" ng-model="settings.savepassword">
+            <span></span>
+            Save password in your browser
+          </label>
+        </div>
+        <div class="checkbox">
+          <label class="fancy-checkbox" ng-class="{disabled: !settings.savepassword}" for="autoconnect">
+            <input type="checkbox" id="autoconnect" ng-model="settings.autoconnect" ng-disabled="!settings.savepassword">
+            <span></span>
+            Automatically connect
+          </label>
+        </div>
+        <div class="checkbox">
+          <label class="fancy-checkbox" for="ssl">
+            <input type="checkbox" id="ssl" ng-model="settings.ssl">
+            <span></span>
+            Encryption.&nbsp;<strong>Strongly recommended!</strong>
+          </label>
         </div>
       </div>
-      <div id="sidebar" data-state="visible" ng-swipe-left="hideSidebar()" ng-swipe-disable-mouse class="vertical-line">
-        <ul class="nav nav-pills nav-stacked" ng-class="{'indented': (predicate === 'serverSortKey'), 'showquickkeys': showQuickKeys}">
-          <li class="bufferfilter">
-            <form role="form">
-              <input class="form-control favorite-font" type="text" id="bufferFilter" ng-model="search" ng-keydown="handleSearchBoxKey($event)" placeholder="Search" autocomplete="off">
+      <button class="btn btn-lg btn-primary" ng-click="connect()">{{ connectbutton }}  <i ng-class="connectbuttonicon" class="glyphicon"></i></button>
+    </form>
+    <a class="help" href="https://github.com/glowing-bear/glowing-bear#a-web-client-for-weechat-">Need help?</a>
+
+  </div>
+</div>
+<div class="content" id="content" sidebar-state="visible" ng-show="connected">
+  <div id="topbar">
+    <div class="brand">
+      <a href="#" ng-click="toggleSidebar()">
+        <img alt="brand" src="assets/img/favicon.png" title="Connected to {{ settings.host }}:{{ settings.port}}">
+      </a>
+      <span class="badge" ng-show="unread > 0">{{unread}}</span>
+      <span class="badge danger" ng-show="notifications > 0">{{notifications}}</span>
+
+      <button ng-if="debugMode" ng-click="countWatchers()">Count<br />Watchers</button>
+    </div>
+
+    <div class="title" title="{{activeBuffer().rtitle}}">
+      <div>
+        <span class="desktop" ng-repeat="part in activeBuffer().title" ng-class="::part.classes" ng-bind-html="::(part.text | linky:'_blank':{rel:'noopener noreferrer'} | DOMfilter:'irclinky')"></span>
+        <span class="mobile" ng-click="showModal('topicModal')" ng-class="{'active': activeBuffer().active, 'channel': activeBuffer().type === 'channel', 'channel_hash': activeBuffer().prefix === '#', 'channel_plus': activeBuffer().prefix === '+', 'channel_ampersand': activeBuffer().prefix === '&'}">{{ activeBuffer().trimmedName || activeBuffer().fullName }}</span>
+
+        <span class="hidden-lg">{{ activeBuffer().trimmedName || activeBuffer().fullName }}</span>
+        <span class="hidden-lg" ng-click="showModal('topicModal')">{{ activeBuffer().trimmedName || activeBuffer().fullName }}</span>
+      </div>
+    </div>
+
+    <div class="actions pull-right vertical-line-left">
+      <a class="settings-toggle" ng-click="showModal('settingsModal')" title="Options menu" href="#">
+        <i class="glyphicon glyphicon-cog"></i>
+      </a>
+      <a ng-click="disconnect()" title="Disconnect from WeeChat" href="#">
+        <i class="glyphicon glyphicon-off"></i>
+      </a>
+    </div>
+  </div>
+  <div id="sidebar" data-state="visible" ng-swipe-left="hideSidebar()" ng-swipe-disable-mouse class="vertical-line">
+    <ul class="nav nav-pills nav-stacked" ng-class="{'indented': (predicate === 'serverSortKey'), 'showquickkeys': showQuickKeys}">
+      <li class="bufferfilter">
+        <form role="form">
+          <input class="form-control favorite-font" type="text" id="bufferFilter" ng-model="search" ng-keydown="handleSearchBoxKey($event)" placeholder="Search" autocomplete="off">
+        </form>
+      </li>
+      <li class="buffer" ng-class="{'active': buffer.active,
+      'unread': buffer.unread,
+      'notification': buffer.notification,
+      'highlight': search && search_highlight_key === key,
+      'indent': buffer.indent,
+      'channel': buffer.type === 'channel',
+      'channel_hash': buffer.prefix === '#',
+      'channel_plus': buffer.prefix === '+',
+      'channel_ampersand': buffer.prefix === '&',
+      'private': buffer.type === 'private'}"
+      ng-repeat="(key, buffer) in (filteredBuffers = (getBuffers() | toArray:'withidx' | filter:{fullName:search} | filter:hasUnread | orderBy:predicate | getBufferQuickKeys:this))">
+      <a ng-click="setActiveBuffer(buffer.id)" title="{{ buffer.fullName }}" href="#">
+        <span class="badge pull-right" ng-class="{'danger': buffer.notification}" ng-bind="buffer.notification || buffer.unread"></span>
+        <span class="buffer-quick-key">{{ buffer.$quickKey }}</span>
+        <span class="buffername">{{ buffer.trimmedName || buffer.fullName }}</span>
+      </a>
+    </li>
+  </ul>
+</div>
+<div id="bufferlines" class="favorite-font" ng-swipe-right="showSidebar()" ng-swipe-left="hideSidebar()" ng-swipe-disable-mouse ng-class="{'withnicklist': showNicklist}" when-scrolled="infiniteScroll()" imgur-drop>
+  <div id="nicklist" ng-if="showNicklist" ng-swipe-right="closeNick()" ng-swipe-disable-mouse class="vertical-line-left">
+    <ul class="nicklistgroup list-unstyled" ng-class="[group.name, 'nicks-'+group.nicks.length]" ng-repeat="group in nicklist">
+      <li ng-repeat="nick in group.nicks|orderBy:'name'">
+        <a ng-click="openBuffer(nick.name)"><span ng-class="::nick.prefixClasses" ng-bind="::nick.prefix"></span><span ng-class="::nick.nameClasses" ng-bind="::nick.name"></span></a>
+      </li>
+    </ul>
+  </div>
+  <table>
+    <tbody>
+      <tr class="bufferline">
+        <td ng-hide="activeBuffer().allLinesFetched" colspan="3">
+          <a class="fetchmorelines btn btn-xs btn-primary" ng-click="fetchMoreLines()" ng-hide="loadingLines" href="#">Fetch more lines</a>
+          <span ng-show="loadingLines">Fetching more lines <i class="glyphicon glyphicon-refresh glyphicon-spin"></i></span>
+        </td>
+      </tr>
+    </tbody>
+    <tbody ng-repeat="bufferline in bufferlines">
+      <tr class="bufferline">
+        <td class="time">
+          <span class="date" ng-class="::{'repeated-time': bufferline.shortTime==bufferlines[$index-1].shortTime}">
+            <span class="cof-chat_time cob-chat_time coa-chat_time" ng-bind-html="::bufferline.formattedTime"></span>
+          </span>
+        </td>
+        <td class="prefix"><span ng-class="::{'repeated-prefix': bufferline.prefixtext==bufferlines[$index-1].prefixtext}"><a ng-click="addMention(bufferline.prefix)"><span class="hidden-bracket">&lt;</span><span ng-repeat="part in ::bufferline.prefix" ng-class="::part.classes" ng-bind="::part.text|prefixlimit:25"></span><span class="hidden-bracket">&gt;</span></a></span></td><!--
+        --><td class="message"><!--
+      --><div ng-repeat="metadata in ::bufferline.metadata" plugin data="::metadata"></div><!--
+    --><span ng-repeat="part in ::bufferline.content" class="text" ng-class="::part.classes.concat(['line-' + part.$$hashKey.replace(':','_')])" ng-bind-html="::part.text | linky:'_blank':{rel:'noopener noreferrer'} | DOMfilter:'irclinky' | DOMfilter:'emojify':settings.enableJSEmoji | DOMfilter:'inlinecolour' | DOMfilter:'latexmath':('.line-' + part.$$hashKey.replace(':','_')):settings.enableMathjax"></span>
+  </td>
+</tr>
+<tr class="readmarker" ng-if="activeBuffer().lastSeen==$index">
+  <td colspan="3">
+    <hr id="readmarker">
+  </td>
+</tr>
+</tbody>
+</table><span id="end-of-buffer"></span>
+</div>
+<div class="footer" ng-class="{'withnicklist': showNicklist}">
+  <div input-bar input-id="sendMessage" command="command"></div>
+</div>
+</div>
+<div id="soundNotification"></div>
+<div id="reconnect" class="alert alert-danger" ng-click="reconnect()" ng-show="reconnecting">
+  <p><strong>Connection to WeeChat lost</strong></p>
+  <i class="glyphicon glyphicon-refresh"></i>
+  Reconnecting... <i class="glyphicon glyphicon-spin glyphicon-refresh"></i> <a class="btn btn-xs" ng-click="reconnect()" href="#">Click to try to reconnect now</a>
+</div>
+<div id="settingsModal" class="gb-modal" data-state="hidden">
+  <div class="backdrop" ng-click="closeModal($event)"></div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="closeModal($event)" aria-hidden="true">&times;</button>
+        <span class="pull-right version">Glowing Bear version 0.6.1-dev</span>
+        <h4 class="modal-title">Settings</h4>
+        <p>Settings will be stored in your browser.</p>
+      </div>
+      <div class="modal-body">
+        <ul class="">
+          <li class="standard-labels">
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <label for="font" class="col-sm-3 control-label make-thinner">Preferred font</label>
+                <div class="col-sm-4">
+                  <input type="text" ng-model="settings.fontfamily" class="form-control" id="font">
+                </div>
+
+                <label for="size" class="col-sm-1 control-label">Size</label>
+                <div class="col-sm-2">
+                  <input type="text" ng-model="settings.fontsize" class="form-control" id="size">
+                </div>
+              </div>
             </form>
           </li>
-          <li class="buffer" ng-class="{'active': buffer.active,
-                                        'unread': buffer.unread,
-                                        'notification': buffer.notification,
-                                        'highlight': search && search_highlight_key === key,
-                                        'indent': buffer.indent,
-                                        'channel': buffer.type === 'channel',
-                                        'channel_hash': buffer.prefix === '#',
-                                        'channel_plus': buffer.prefix === '+',
-                                        'channel_ampersand': buffer.prefix === '&',
-                                        'private': buffer.type === 'private'}"
-              ng-repeat="(key, buffer) in (filteredBuffers = (getBuffers() | toArray:'withidx' | filter:{fullName:search} | filter:hasUnread | orderBy:predicate | getBufferQuickKeys:this))">
-            <a ng-click="setActiveBuffer(buffer.id)" title="{{ buffer.fullName }}" href="#">
-              <span class="badge pull-right" ng-class="{'danger': buffer.notification}" ng-bind="buffer.notification || buffer.unread"></span>
-              <span class="buffer-quick-key">{{ buffer.$quickKey }}</span>
-              <span class="buffername">{{ buffer.trimmedName || buffer.fullName }}</span>
-            </a>
+          <li class="standard-labels">
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <label for="theme" class="col-sm-3 control-label make-thinner">Theme</label>
+                <div class="col-sm-7">
+                  <select id="theme" class="form-control" ng-model="settings.theme" ng-options="theme for theme in themes"></select>
+                </div>
+              </div>
+            </form>
+          </li>
+
+          <li class="standard-labels">
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <label for="custom-css" class="col-sm-3 control-label make-thinner">Custom CSS</label>
+                <div class="col-sm-7">
+                  <textarea id="custom-css" class="form-control" ng-model="settings.customCSS"></textarea>
+                </div>
+              </div>
+            </form>
+          </li>
+
+          <li>
+            <form class="form-inline" role="form">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="settings.onlyUnread">
+                  Only show buffers with unread messages
+                </label>
+              </div>
+            </form>
+          </li>
+          <li>
+            <form class="form-inline" role="form">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="settings.noembed">
+                  Hide embedded content by default<span class="text-muted settings-help">NSFW content will be hidden regardless of this choice</span>
+                </label>
+              </div>
+            </form>
+          </li>
+          <li>
+            <form class="form-inline" role="form">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="settings.hotlistsync">
+                  Mark messages as read in WeeChat
+                </label>
+              </div>
+            </form>
+          </li>
+          <li>
+            <form class="form-inline" role="form">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="settings.nonicklist">
+                  Hide nicklist
+                </label>
+              </div>
+            </form>
+          </li>
+          <li>
+            <form class="form-inline" role="form">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="settings.orderbyserver">
+                  Hierarchical buffer view (order by server)
+                </label>
+              </div>
+            </form>
+          </li>
+          <li>
+            <form class="form-inline" role="form">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="settings.readlineBindings">
+                  Enable common readline keybindings in input bar
+                </label>
+              </div>
+            </form>
+          </li>
+          <li>
+            <form class="form-inline" role="form">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="settings.useFavico">
+                  Display unread count in favicon
+                </label>
+              </div>
+            </form>
+          </li>
+          <li>
+            <form class="form-inline" role="form">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="settings.soundnotification">
+                  Play sound on notification
+                </label>
+              </div>
+            </form>
+          </li>
+          <li>
+            <form class="form-inline" role="form">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="settings.enableJSEmoji">
+                  Enable non-native Emoji support <span class="text-muted settings-help">Displays Emoji characters as images. Emoji provided free by <a href="http://emojione.com">http://emojione.com</a></span>
+                </label>
+              </div>
+            </form>
+          </li>
+          <li>
+            <form class="form-inline" role="form">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="settings.enableMathjax">
+                  Enable LaTeX math rendering
+                </label>
+              </div>
+            </form>
           </li>
         </ul>
       </div>
-      <div id="bufferlines" class="favorite-font" ng-swipe-right="showSidebar()" ng-swipe-left="hideSidebar()" ng-swipe-disable-mouse ng-class="{'withnicklist': showNicklist}" when-scrolled="infiniteScroll()" imgur-drop>
-        <div id="nicklist" ng-if="showNicklist" ng-swipe-right="closeNick()" ng-swipe-disable-mouse class="vertical-line-left">
-          <ul class="nicklistgroup list-unstyled" ng-class="[group.name, 'nicks-'+group.nicks.length]" ng-repeat="group in nicklist">
-            <li ng-repeat="nick in group.nicks|orderBy:'name'">
-              <a ng-click="openBuffer(nick.name)"><span ng-class="::nick.prefixClasses" ng-bind="::nick.prefix"></span><span ng-class="::nick.nameClasses" ng-bind="::nick.name"></span></a>
-            </li>
-          </ul>
-        </div>
-        <table>
-          <tbody>
-            <tr class="bufferline">
-              <td ng-hide="activeBuffer().allLinesFetched" colspan="3">
-                <a class="fetchmorelines btn btn-xs btn-primary" ng-click="fetchMoreLines()" ng-hide="loadingLines" href="#">Fetch more lines</a>
-                <span ng-show="loadingLines">Fetching more lines <i class="glyphicon glyphicon-refresh glyphicon-spin"></i></span>
-              </td>
-            </tr>
-          </tbody>
-          <tbody ng-repeat="bufferline in bufferlines">
-            <tr class="bufferline">
-              <td class="time">
-                <span class="date" ng-class="::{'repeated-time': bufferline.shortTime==bufferlines[$index-1].shortTime}">
-                  <span class="cof-chat_time cob-chat_time coa-chat_time" ng-bind-html="::bufferline.formattedTime"></span>
-                </span>
-              </td>
-              <td class="prefix"><span ng-class="::{'repeated-prefix': bufferline.prefixtext==bufferlines[$index-1].prefixtext}"><a ng-click="addMention(bufferline.prefix)"><span class="hidden-bracket">&lt;</span><span ng-repeat="part in ::bufferline.prefix" ng-class="::part.classes" ng-bind="::part.text|prefixlimit:25"></span><span class="hidden-bracket">&gt;</span></a></span></td><!--
-           --><td class="message"><!--
-             --><div ng-repeat="metadata in ::bufferline.metadata" plugin data="::metadata"></div><!--
-             --><span ng-repeat="part in ::bufferline.content" class="text" ng-class="::part.classes.concat(['line-' + part.$$hashKey.replace(':','_')])" ng-bind-html="::part.text | linky:'_blank':{rel:'noopener noreferrer'} | DOMfilter:'irclinky' | DOMfilter:'emojify':settings.enableJSEmoji | DOMfilter:'inlinecolour' | DOMfilter:'latexmath':('.line-' + part.$$hashKey.replace(':','_')):settings.enableMathjax"></span>
-              </td>
-            </tr>
-            <tr class="readmarker" ng-if="activeBuffer().lastSeen==$index">
-              <td colspan="3">
-                <hr id="readmarker">
-              </td>
-            </tr>
-          </tbody>
-        </table><span id="end-of-buffer"></span>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="closeModal($event)">Close</button>
       </div>
-      <div class="footer" ng-class="{'withnicklist': showNicklist}">
-        <div input-bar input-id="sendMessage" command="command"></div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div id="topicModal" class="gb-modal" data-state="hidden">
+  <div class="backdrop" ng-click="closeModal($event)"></div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="closeModal($event)" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Channel topic</h4>
+        <p ng-repeat="part in activeBuffer().title" ng-class="::part.classes" ng-bind-html="::(part.text | linky:'_blank':{rel:'noopener noreferrer'} | DOMfilter:'irclinky')"></p>
       </div>
-    </div>
-    <div id="soundNotification"></div>
-    <div id="reconnect" class="alert alert-danger" ng-click="reconnect()" ng-show="reconnecting">
-        <p><strong>Connection to WeeChat lost</strong></p>
-        <i class="glyphicon glyphicon-refresh"></i>
-        Reconnecting... <i class="glyphicon glyphicon-spin glyphicon-refresh"></i> <a class="btn btn-xs" ng-click="reconnect()" href="#">Click to try to reconnect now</a>
-    </div>
-    <div id="settingsModal" class="gb-modal" data-state="hidden">
-      <div class="backdrop" ng-click="closeModal($event)"></div>
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" ng-click="closeModal($event)" aria-hidden="true">&times;</button>
-            <span class="pull-right version">Glowing Bear version 0.6.1-dev</span>
-            <h4 class="modal-title">Settings</h4>
-            <p>Settings will be stored in your browser.</p>
-          </div>
-          <div class="modal-body">
-            <ul class="">
-              <li class="standard-labels">
-                <form class="form-horizontal" role="form">
-                  <div class="form-group">
-                    <label for="font" class="col-sm-3 control-label make-thinner">Preferred font</label>
-                    <div class="col-sm-4">
-                      <input type="text" ng-model="settings.fontfamily" class="form-control" id="font">
-                    </div>
-
-                    <label for="size" class="col-sm-1 control-label">Size</label>
-                    <div class="col-sm-2">
-                      <input type="text" ng-model="settings.fontsize" class="form-control" id="size">
-                    </div>
-                  </div>
-                </form>
-              </li>
-              <li class="standard-labels">
-                <form class="form-horizontal" role="form">
-                  <div class="form-group">
-                    <label for="theme" class="col-sm-3 control-label make-thinner">Theme</label>
-                    <div class="col-sm-7">
-                      <select id="theme" class="form-control" ng-model="settings.theme" ng-options="theme for theme in themes"></select>
-                    </div>
-                  </div>
-                </form>
-              </li>
-
-              <li class="standard-labels">
-                <form class="form-horizontal" role="form">
-                  <div class="form-group">
-                    <label for="custom-css" class="col-sm-3 control-label make-thinner">Custom CSS</label>
-                    <div class="col-sm-7">
-                      <textarea id="custom-css" class="form-control" ng-model="settings.customCSS"></textarea>
-                    </div>
-                  </div>
-                </form>
-              </li>
-
-              <li>
-                <form class="form-inline" role="form">
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" ng-model="settings.onlyUnread">
-                      Only show buffers with unread messages
-                    </label>
-                  </div>
-                </form>
-              </li>
-              <li>
-                <form class="form-inline" role="form">
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" ng-model="settings.noembed">
-                       Hide embedded content by default<span class="text-muted settings-help">NSFW content will be hidden regardless of this choice</span>
-                    </label>
-                  </div>
-                </form>
-              </li>
-              <li>
-                <form class="form-inline" role="form">
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" ng-model="settings.hotlistsync">
-                      Mark messages as read in WeeChat
-                    </label>
-                  </div>
-                </form>
-              </li>
-              <li>
-                <form class="form-inline" role="form">
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" ng-model="settings.nonicklist">
-                      Hide nicklist
-                    </label>
-                  </div>
-                </form>
-              </li>
-              <li>
-                <form class="form-inline" role="form">
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" ng-model="settings.orderbyserver">
-                      Hierarchical buffer view (order by server)
-                    </label>
-                  </div>
-                </form>
-              </li>
-              <li>
-                <form class="form-inline" role="form">
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" ng-model="settings.readlineBindings">
-                      Enable common readline keybindings in input bar
-                    </label>
-                  </div>
-                </form>
-              </li>
-              <li>
-                <form class="form-inline" role="form">
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" ng-model="settings.useFavico">
-                      Display unread count in favicon
-                    </label>
-                  </div>
-                </form>
-              </li>
-              <li>
-                <form class="form-inline" role="form">
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" ng-model="settings.soundnotification">
-                      Play sound on notification
-                    </label>
-                  </div>
-                </form>
-              </li>
-              <li>
-                <form class="form-inline" role="form">
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" ng-model="settings.enableJSEmoji">
-                      Enable non-native Emoji support <span class="text-muted settings-help">Displays Emoji characters as images. Emoji provided free by <a href="http://emojione.com">http://emojione.com</a></span>
-                    </label>
-                  </div>
-                </form>
-              </li>
-               <li>
-                <form class="form-inline" role="form">
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" ng-model="settings.enableMathjax">
-                      Enable LaTeX math rendering
-                    </label>
-                  </div>
-                </form>
-              </li>
-            </ul>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" ng-click="closeModal($event)">Close</button>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-    <div id="topicModal" class="gb-modal" data-state="hidden">
-      <div class="backdrop" ng-click="closeModal($event)"></div>
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" ng-click="closeModal($event)" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">Channel topic</h4>
-            <p ng-repeat="part in activeBuffer().title" ng-class="::part.classes" ng-bind-html="::(part.text | linky:'_blank':{rel:'noopener noreferrer'} | DOMfilter:'irclinky')"></p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" ng-click="closeModal($event)">Close</button>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-  </body>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="closeModal($event)">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</body>
 </html>
