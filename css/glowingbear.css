@@ -697,8 +697,11 @@ img.emojione {
 }
 
 .help {
-  margin-top: 20px;
+  margin: 20px auto;
+  padding-bottom: 60px;
+  max-width: 334px;
   display: block;
+  text-align: center;
 }
 
 .help:hover {
@@ -706,7 +709,7 @@ img.emojione {
 }
 
 .alert {
-  border-radius: none;
+  border-radius: 0;
 }
 
 a {
@@ -735,6 +738,11 @@ h2 img {
   margin-right: 5px;
 }
 
+.btn {
+  border-radius: 0;
+  border: none;
+}
+
 .btn-primary {
   background: #01a0e4;
 }
@@ -750,6 +758,8 @@ h2 img {
 
 .container > * {
   align-self: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 
@@ -772,6 +782,8 @@ label {
   padding: 0 15px;
   line-height: 50px;
   height: 50px;
+  border-radius: 0;
+  border: none
 }
 
 .form-control:focus {
@@ -782,6 +794,12 @@ label {
   margin-bottom: 20px;
 }
 
+.modal-content {
+  border-radius: 0;
+  border: none;
+  box-shadow: 0 3px 9px rgba(0, 0, 0, .1);
+}
+
 /* Stilish checkboxes */
   .fancy-checkbox {
     outline: none;
@@ -790,10 +808,10 @@ label {
     align-items: center;
     position: relative;
   }
-  .fancy-checkbox input {
+  .fancy-checkbox > input {
     display: none;
   }
-  .fancy-checkbox span, .fancy-checkbox span:before {
+  .fancy-checkbox > i, .fancy-checkbox i:before {
     display: block;
     -webkit-transition: background-position 0.25s, left 0.25s;
     -moz-transition: background-position 0.25s, left 0.25s;
@@ -802,7 +820,7 @@ label {
     transition: background-position 0.25s, left 0.25s;
     border-radius: 27px;
   }
-  .fancy-checkbox span {
+  .fancy-checkbox i {
     background: #ccc;
     background: -moz-linear-gradient(right, #a5a2a2 0%, #a5a2a2 50%, #01a252 50%, #01a252 100%);
     background: -webkit-linear-gradient(right, #a5a2a2 0%, #a5a2a2 50%, #01a252 50%, #01a252 100%);
@@ -817,8 +835,9 @@ label {
     outline: none;
     display: inline-block;
     margin-right: 15px;
+    position: relative;
   }
-  .fancy-checkbox span:before {
+  .fancy-checkbox i:before {
     content: '';
     background: #fff;
     position: absolute;
@@ -827,7 +846,7 @@ label {
     height: 23px;
     width: 23px;
   }
-  .disabled.fancy-checkbox span {
+  .disabled.fancy-checkbox i {
     background: #ccc;
     background: -moz-linear-gradient(right, #eee 0%, #eee 50%, #eee 50%, #eee 100%);
     background: -webkit-linear-gradient(right, #eee 0%, #eee 50%, #eee 50%, #eee 100%);
@@ -835,10 +854,10 @@ label {
     background: -ms-linear-gradient(right, #eee 0%, #eee 50%, #eee 50%, #eee 100%);
     background: linear-gradient(to left, #eee 0%, #eee 50%, #eee 50%, #eee 100%);
   }
-  .fancy-checkbox input:checked + span {
+  .fancy-checkbox input:checked + i {
     background-position: 0 0, 0 0;
   }
-  .fancy-checkbox input:checked + span:before {
+  .fancy-checkbox input:checked + i:before {
     left: 27px;
   }
 
@@ -853,6 +872,10 @@ label {
 
     .desktop {
       display: none;
+    }
+
+    .container {
+      display: block;
     }
 
     #bufferlines table {
@@ -990,4 +1013,14 @@ label {
     .col-sm-9 {
         padding-right: 0px !important;
     }
+
+    .form-group .col-sm-9 {
+      padding-right: 5px !important;
+    }
+}
+
+@media (max-width: 768px) {
+  .form-signin {
+    min-height: 480px;
+  }
 }

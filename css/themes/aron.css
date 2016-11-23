@@ -71,15 +71,50 @@ li.bufferfilter {
 
 /* Nicer lines */
 #bufferlines {
-  background: #f7f7f7
+  background: #f7f7f7;
+  bottom: 45px;
+  top: 42px;
+  height: auto;
+  position: absolute;
+  padding-top: 0;
 }
+
+#bufferlines > table {
+  margin-top: 0;
+}
+
+.fetchmorelines {
+  display: block;
+  text-align: center;
+  background: #01a0e4;
+  font-size: 12px;
+  color: #fff;
+  line-height: 40px;
+}
+
+.fetchmorelines i {
+  top: 2px;
+  margin-left: 5px;
+}
+
+.fetchmorelines.loading {
+  background: #d6d5d4;
+}
+
+display: block;
+    text-align: center;
+    background: #01a0e4;
+    /* padding: 5px; */
+    font-size: 14px;
+    color: #fff;
+    line-height: 40px;
 
 tr.bufferline {
   line-height: 1.4;
 }
 
 td.time {
-  padding: 1px 5px 1px 3px;
+  padding: 1px 8px;
   font-size: 12px;
   color: #d6d5d4;
 }
@@ -127,6 +162,8 @@ td.message {
   background: #fff;
   border-radius: 2px;
   line-height: 35px;
+  box-shadow: none !important;
+  -webkit-appearance: none;
 }
 
 #sendMessage:focus, #sendMessage:active {
@@ -150,10 +187,11 @@ button {
 #nicklist {
   border-left: 1px solid #d6d5d4;
   background: #f7f7f7;
+  top: 42px;
   bottom: 45px;
   height: initial;
   min-height: initial;
-  padding: 42px 0 0;
+  padding: 0;
   width: 130px;
 }
 
@@ -214,17 +252,6 @@ li.buffer.channel a span:last-of-type:before,
 }
 
 /* Mobile */
-
-@media (max-width: 968px) {
-  .container {
-    display: block;
-  }
-
-  .form-signin {
-    min-height: 480px;
-  }
-}
-
 @media (max-width: 968px) {
   #sidebar[data-state=hidden] {
     transform: translate(-210px,0);
@@ -237,6 +264,7 @@ li.buffer.channel a span:last-of-type:before,
 
   [sidebar-state="hidden"] #topbar {
     background: #f7f7f7;
+    border-bottom: 1px solid #d6d5d4;
   }
 
   [sidebar-state="hidden"] #topbar .actions {
@@ -257,7 +285,7 @@ li.buffer.channel a span:last-of-type:before,
 
   #topbar .title div {
     padding: 2px;
-    height: 35px;
+    height: 34px;
   }
 
   #nicklist {
@@ -270,7 +298,7 @@ li.buffer.channel a span:last-of-type:before,
   }
 
   .withnicklist {
-    margin-right: 20px !important;
+    margin-right: 0px !important;
   }
 }
 

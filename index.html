@@ -94,21 +94,21 @@
         <div class="checkbox">
           <label class="fancy-checkbox" for="savepassword">
             <input type="checkbox" id="savepassword" ng-model="settings.savepassword">
-            <span></span>
+            <i></i>
             Save password in your browser
           </label>
         </div>
         <div class="checkbox">
           <label class="fancy-checkbox" ng-class="{disabled: !settings.savepassword}" for="autoconnect">
             <input type="checkbox" id="autoconnect" ng-model="settings.autoconnect" ng-disabled="!settings.savepassword">
-            <span></span>
+            <i></i>
             Automatically connect
           </label>
         </div>
         <div class="checkbox">
           <label class="fancy-checkbox" for="ssl">
             <input type="checkbox" id="ssl" ng-model="settings.ssl">
-            <span></span>
+            <i></i>
             Encryption.&nbsp;<strong>Strongly recommended!</strong>
           </label>
         </div>
@@ -150,7 +150,7 @@
       </a>
     </div>
   </div>
-  <div id="sidebar" data-state="visible" ng-swipe-left="hideSidebar()" ng-swipe-disable-mouse class="vertical-line">
+  <div id="sidebar" ng-show="connected" data-state="visible" ng-swipe-left="hideSidebar()" ng-swipe-disable-mouse class="vertical-line">
     <ul class="nav nav-pills nav-stacked" ng-class="{'indented': (predicate === 'serverSortKey'), 'showquickkeys': showQuickKeys}">
       <li class="bufferfilter">
         <form role="form">
@@ -176,7 +176,7 @@
     </li>
   </ul>
 </div>
-<div id="bufferlines" class="favorite-font" ng-swipe-right="showSidebar()" ng-swipe-left="hideSidebar()" ng-swipe-disable-mouse ng-class="{'withnicklist': showNicklist}" when-scrolled="infiniteScroll()" imgur-drop>
+<div id="bufferlines" ng-show="connected" class="favorite-font" ng-swipe-right="showSidebar()" ng-swipe-left="hideSidebar()" ng-swipe-disable-mouse ng-class="{'withnicklist': showNicklist}" when-scrolled="infiniteScroll()" imgur-drop>
   <div id="nicklist" ng-if="showNicklist" ng-swipe-right="closeNick()" ng-swipe-disable-mouse class="vertical-line-left">
     <ul class="nicklistgroup list-unstyled" ng-class="[group.name, 'nicks-'+group.nicks.length]" ng-repeat="group in nicklist">
       <li ng-repeat="nick in group.nicks|orderBy:'name'">
@@ -189,7 +189,7 @@
       <tr class="bufferline">
         <td ng-hide="activeBuffer().allLinesFetched" colspan="3">
           <a class="fetchmorelines btn btn-xs btn-primary" ng-click="fetchMoreLines()" ng-hide="loadingLines" href="#">Fetch more lines</a>
-          <span ng-show="loadingLines">Fetching more lines <i class="glyphicon glyphicon-refresh glyphicon-spin"></i></span>
+          <span class="fetchmorelines loading btn btn-xs btn-primary" ng-show="loadingLines">Fetching more lines <i class="glyphicon glyphicon-refresh glyphicon-spin"></i></span>
         </td>
       </tr>
     </tbody>
@@ -276,8 +276,9 @@
           <li>
             <form class="form-inline" role="form">
               <div class="checkbox">
-                <label>
+                <label class="fancy-checkbox">
                   <input type="checkbox" ng-model="settings.onlyUnread">
+                  <i></i>
                   Only show buffers with unread messages
                 </label>
               </div>
@@ -286,8 +287,9 @@
           <li>
             <form class="form-inline" role="form">
               <div class="checkbox">
-                <label>
+                <label class="fancy-checkbox">
                   <input type="checkbox" ng-model="settings.noembed">
+                  <i></i>
                   Hide embedded content by default<span class="text-muted settings-help">NSFW content will be hidden regardless of this choice</span>
                 </label>
               </div>
@@ -296,8 +298,9 @@
           <li>
             <form class="form-inline" role="form">
               <div class="checkbox">
-                <label>
+                <label class="fancy-checkbox">
                   <input type="checkbox" ng-model="settings.hotlistsync">
+                  <i></i>
                   Mark messages as read in WeeChat
                 </label>
               </div>
@@ -306,8 +309,9 @@
           <li>
             <form class="form-inline" role="form">
               <div class="checkbox">
-                <label>
+                <label class="fancy-checkbox">
                   <input type="checkbox" ng-model="settings.nonicklist">
+                  <i></i>
                   Hide nicklist
                 </label>
               </div>
@@ -316,8 +320,9 @@
           <li>
             <form class="form-inline" role="form">
               <div class="checkbox">
-                <label>
+                <label class="fancy-checkbox">
                   <input type="checkbox" ng-model="settings.orderbyserver">
+                  <i></i>
                   Hierarchical buffer view (order by server)
                 </label>
               </div>
@@ -326,8 +331,9 @@
           <li>
             <form class="form-inline" role="form">
               <div class="checkbox">
-                <label>
+                <label class="fancy-checkbox">
                   <input type="checkbox" ng-model="settings.readlineBindings">
+                  <i></i>
                   Enable common readline keybindings in input bar
                 </label>
               </div>
@@ -336,8 +342,9 @@
           <li>
             <form class="form-inline" role="form">
               <div class="checkbox">
-                <label>
+                <label class="fancy-checkbox">
                   <input type="checkbox" ng-model="settings.useFavico">
+                  <i></i>
                   Display unread count in favicon
                 </label>
               </div>
@@ -346,8 +353,9 @@
           <li>
             <form class="form-inline" role="form">
               <div class="checkbox">
-                <label>
+                <label class="fancy-checkbox">
                   <input type="checkbox" ng-model="settings.soundnotification">
+                  <i></i>
                   Play sound on notification
                 </label>
               </div>
@@ -356,8 +364,9 @@
           <li>
             <form class="form-inline" role="form">
               <div class="checkbox">
-                <label>
+                <label class="fancy-checkbox">
                   <input type="checkbox" ng-model="settings.enableJSEmoji">
+                  <i></i>
                   Enable non-native Emoji support <span class="text-muted settings-help">Displays Emoji characters as images. Emoji provided free by <a href="http://emojione.com">http://emojione.com</a></span>
                 </label>
               </div>
@@ -366,8 +375,9 @@
           <li>
             <form class="form-inline" role="form">
               <div class="checkbox">
-                <label>
+                <label class="fancy-checkbox">
                   <input type="checkbox" ng-model="settings.enableMathjax">
+                  <i></i>
                   Enable LaTeX math rendering
                 </label>
               </div>
