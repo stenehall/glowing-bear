@@ -1,0 +1,190 @@
+<div id="settingsModal" class="gb-modal" data-state="hidden">
+  <div class="backdrop" ng-click="closeModal($event)"></div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="closeModal($event)" aria-hidden="true">&times;</button>
+        <span class="pull-right version">Glowing Bear version 0.7.0</span>
+        <h4 class="modal-title">Settings</h4>
+      </div>
+      <div class="modal-body">
+        <ul class="">
+          <li class="standard-labels">
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <label for="font" class="col-sm-3 control-label make-thinner">Preferred font</label>
+                <div class="col-sm-4">
+                  <input type="text" ng-model="settings.fontfamily" class="form-control" id="font">
+                </div>
+
+                <label for="size" class="col-sm-1 control-label">Size</label>
+                <div class="col-sm-2">
+                  <input type="text" ng-model="settings.fontsize" class="form-control" id="size">
+                </div>
+              </div>
+            </form>
+          </li>
+          <li class="standard-labels">
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <label for="theme" class="col-sm-3 control-label make-thinner">Theme</label>
+                <div class="col-sm-7">
+                  <select id="theme" class="form-control" ng-model="settings.theme" ng-options="theme for theme in themes"></select>
+                </div>
+              </div>
+            </form>
+          </li>
+
+          <li class="standard-labels">
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <label for="custom-css" class="col-sm-3 control-label make-thinner">Custom CSS</label>
+                <div class="col-sm-7">
+                  <textarea id="custom-css" class="form-control" ng-model="settings.customCSS"></textarea>
+                </div>
+              </div>
+            </form>
+          </li>
+
+          <li>
+            <form class="form-inline" role="form">
+              <div class="checkbox">
+                <label class="fancy-checkbox">
+                  <input type="checkbox" ng-model="settings.onlyUnread">
+                  <i></i>
+                  Only show buffers with unread messages
+                </label>
+              </div>
+            </form>
+          </li>
+          <li>
+            <form class="form-inline" role="form">
+              <div class="checkbox">
+                <label class="fancy-checkbox">
+                  <input type="checkbox" ng-model="settings.noembed">
+                  <i></i>
+                  Hide embedded content by default
+                </label>
+                <span class="text-muted settings-help">NSFW content will be hidden regardless of this choice</span>
+              </div>
+            </form>
+          </li>
+          <li>
+            <form class="form-inline" role="form">
+              <div class="checkbox">
+                <label class="fancy-checkbox">
+                  <input type="checkbox" ng-model="settings.hotlistsync">
+                  <i></i>
+                  Mark messages as read in WeeChat
+                </label>
+              </div>
+            </form>
+          </li>
+          <li class="mobile">
+            <form class="form-inline" role="form">
+              <div class="checkbox">
+                <label class="fancy-checkbox">
+                  <input type="checkbox" ng-model="settings.alwaysnicklist">
+                  <i></i>
+                  Always show nicklist
+                </label>
+              </div>
+            </form>
+          </li>
+          <li class="desktop">
+            <form class="form-inline" role="form">
+              <div class="checkbox">
+                <label class="fancy-checkbox">
+                  <input type="checkbox" ng-model="settings.nonicklist">
+                  <i></i>
+                  Hide nicklist
+                </label>
+              </div>
+            </form>
+          </li>
+          <li>
+            <form class="form-inline" role="form">
+              <div class="checkbox">
+                <label class="fancy-checkbox">
+                  <input type="checkbox" ng-model="settings.orderbyserver">
+                  <i></i>
+                  Hierarchical buffer view (order by server)
+                </label>
+              </div>
+            </form>
+          </li>
+          <li>
+            <form class="form-inline" role="form">
+              <div class="checkbox">
+                <label class="fancy-checkbox">
+                  <input type="checkbox" ng-model="settings.readlineBindings">
+                  <i></i>
+                  Enable common readline keybindings in input bar
+                </label>
+              </div>
+            </form>
+          </li>
+          <li>
+            <form class="form-inline" role="form">
+              <div class="checkbox">
+                <label class="fancy-checkbox">
+                  <input type="checkbox" ng-model="settings.useFavico">
+                  <i></i>
+                  Display unread count in favicon
+                </label>
+              </div>
+            </form>
+          </li>
+          <li>
+            <form class="form-inline" role="form">
+              <div class="checkbox">
+                <label class="fancy-checkbox">
+                  <input type="checkbox" ng-model="settings.soundnotification">
+                  <i></i>
+                  Play sound on notification
+                </label>
+              </div>
+            </form>
+          </li>
+          <li>
+            <form class="form-inline" role="form">
+              <div class="checkbox">
+                <label class="fancy-checkbox">
+                  <input type="checkbox" ng-model="settings.enableJSEmoji">
+                  <i></i>
+                  Enable non-native Emoji support
+                </label>
+                <span class="text-muted settings-help">Displays Emoji characters as images. Emoji provided free by <a href="http://emojione.com">http://emojione.com</a></span>
+              </div>
+            </form>
+          </li>
+          <li>
+            <form class="form-inline" role="form">
+              <div class="checkbox">
+                <label class="fancy-checkbox">
+                  <input type="checkbox" ng-model="settings.enableMathjax">
+                  <i></i>
+                  Enable LaTeX math rendering
+                </label>
+              </div>
+            </form>
+          </li>
+          <li class="desktop">
+            <form class="form-inline" role="form">
+              <div class="checkbox">
+                <label class="fancy-checkbox">
+                  <input type="checkbox" ng-model="settings.enableQuickKeys">
+                  <i></i>
+                  Use Alt+[0-9] to switch buffers
+                </label>
+              </div>
+            </form>
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="closeModal($event)">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

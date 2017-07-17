@@ -1,0 +1,119 @@
+<div id="helpModal" class="gb-modal" data-state="hidden">
+  <div class="backdrop" ng-click="closeModal($event)"></div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="closeModal($event)" aria-hidden="true">&times;</button>
+        <span class="pull-right version">Glowing Bear version 0.7.0</span>
+        <h4 class="modal-title">Help</h4>
+      </div>
+      <div class="modal-body">
+        <div class="panel-group accordion">
+          <div class="panel" data-state="collapsed">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a class="accordion-toggle" ng-click="toggleAccordion($event)">
+                  Usage instructions
+                </a>
+              </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse in">
+              <div class="panel-body">
+                <h3>Configuring the relay</h3>
+                <div>To start using glowing bear, please enable the relay plugin in your WeeChat client:
+                  <pre>/set relay.network.password yourpassword
+                    /relay add weechat 443
+                  </pre>
+                  <span class="label label-danger">WeeChat version 0.4.2 or higher is required.</span><br>
+                  The communication goes directly between your browser and your WeeChat relay in plain text. Check the instructions below for help on setting up encrypted communication.
+                  Connection settings, including your password, are saved locally in your own browser between sessions.
+                  <br>
+                  <h3>Shortcuts</h3>
+                  Glowing Bear has a few shortcuts:
+                  <ul>
+                    <li><kbd>ALT-n</kbd>: Toggle nicklist</li>
+                    <li><kbd>ALT-l</kbd>: Focus on input bar</li>
+                    <li><kbd>ALT-[0-9]</kbd>: Switch to buffer number N</li>
+                    <li><kbd>ALT-a</kbd>: Focus on next buffer with activity</li>
+                    <li><kbd>ALT-&lt;</kbd>: Switch to previous active buffer</li>
+                    <li><kbd>ALT-g</kbd>: Focus on buffer list filter</li>
+                    <li><kbd>Esc-Esc</kbd>: Disconnect (double-tap)</li>
+                    <li>Arrow keys: Navigate history</li>
+                    <li><kbd>Tab</kbd>: Complete nick</li>
+                    <li>The following readline/emacs style keybindings can be enabled with a setting: <span title="Move cursor to beginning of line"><kbd>Ctrl-a</kbd></span>, <span title="Move cursor to te end of the line"><kbd>Ctrl-e</kbd></span>, <span title="Delete from cursor to beginning of the line"><kbd>Ctrl-u</kbd></span>, <span title="Delete from cursor to the end of the line"><kbd>Ctrl-k</kbd></span>, <span title="Delete from cursor to previous space"><kbd>Ctrl-w</kbd></span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel" data-state="collapsed">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a class="accordion-toggle" ng-click="toggleAccordion($event)">
+                  Encryption instructions
+                </a>
+              </h4>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse in">
+              <div class="panel-body">
+                <p>If you check the encryption box, the communication between browser and WeeChat will be encrypted with TLS.</p>
+                <p><strong>Note</strong>: If you are using a self-signed certificate, you have to visit <a href="https://c.koa.is:443/weechat">https://c.koa.is:443/weechat</a> in your browser first to add a security exception. You can close that tab once you confirmed the certificate, no content will appear. The necessity of this process is a bug in <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=594502">Firefox</a> and other browsers.</p>
+                <p><strong>Setup</strong>: If you want to use an encrypted session you first have to set up the relay to use TLS. You basically have two options: a self-signed certificate is easier to set up, but requires manual security exceptions. Using a certificate that is trusted by your browser requires more setup, but offers greater convenience later on and does not require security exceptions. You can find a guide to set up WeeChat with a free trusted certificate from StartSSL <a href="https://4z2.de/2014/07/06/weechat-trusted-relay">here</a>. Should you wish to use a self-signed certificate instead, execute the following commands in a shell on the same host and as the user running WeeChat:</p>
+                <pre>$ mkdir -p ~/.weechat/ssl
+                  $ cd ~/.weechat/ssl
+                  $ openssl req -nodes -newkey rsa:4096 -keyout relay.pem -x509 -days 365 -out relay.pem -sha256 -subj "/CN=c.koa.is/"
+                </pre>
+                <p>If WeeChat is already running, you can reload the certificate and private key and set up an encrypted relay on port 443 with these WeeChat commands:</p>
+                <pre>/set relay.network.password yourpassword
+                  /relay sslcertkey
+                  /relay add ssl.weechat 443
+                </pre>
+              </div>
+            </div>
+          </div>
+          <div class="panel" data-state="collapsed" ng-hide="isinstalled">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a class="accordion-toggle" ng-click="toggleAccordion($event)">
+                  Install app
+                </a>
+              </h4>
+            </div>
+            <div id="collapseFour" class="panel-collapse collapse in">
+              <div class="panel-body">
+                <p>You don't need to install anything to use this app, it should work with any modern browser. Start using it <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">right now</a>! However, there are a few ways to improve integration with your operating system.</p>
+                <h3>Mobile Applications</h3>
+                <p>If you're running Android 4.4 or later, you can install our app from the Google Play Store! We also provide an optimized application for Firefox OS devices. If you're using the Firefox browser, keep on reading below -- the Firefox OS app won't work for you</p>
+                <p><a href="https://play.google.com/store/apps/details?id=com.glowing_bear"><img alt="Android app on Google Play" src="assets/img/badge_playstore.png"></a> <a href="https://marketplace.firefox.com/app/glowing-bear/"><img alt="Firefox OS app in the Firefox Marketplace" src="assets/img/badge_firefoxos.png"></a></p>
+                <h3>Firefox Browser</h3>
+                <p>If you have a recent version of Firefox you can install Glowing Bear as a Firefox app. Click the button to install.</p>
+                <p><button class="btn btn-lg btn-primary" ng-click="install()">Install Firefox app <i class="glyphicon glyphicon-chevron-right"></i></button></p>
+                <p>Note for self-signed certificates: Firefox does not share a certificate storage with Firefox apps, so accepting self-signed certificates is a bit tricky.</p>
+                <h3>Chrome</h3>
+                <p>To install Glowing Bear as an app in Chrome for Android, select <kbd>Menu - Add to home screen</kbd>. In the desktop version of Chrome, click <kbd>Menu - More tools - Create application shortcuts</kbd>.</p>
+              </div>
+            </div>
+          </div>
+          <div class="panel" data-state="collapsed">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a class="accordion-toggle" ng-click="toggleAccordion($event)">
+                  Get involved
+                </a>
+              </h4>
+            </div>
+            <div id="collapseFive" class="panel-collapse collapse in">
+              <div class="panel-body">
+                <p>Glowing bear is built by a small group of developers in their free time. As we're always trying to improve it, we would love getting your feedback and help. If that sounds like something you might enjoy, check out our <a href="https://github.com/glowing-bear/glowing-bear">project page</a> on GitHub!</p>
+                <p>If you're interested in contributing or simply want to say hello, head over to <strong>#glowing-bear</strong> on <strong>freenode!</strong> We won't bite, promise (-ish).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="closeModal($event)">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
